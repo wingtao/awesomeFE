@@ -1,0 +1,49 @@
+/*单行截断*/
+.single{
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+/*多行截断*/
+/*方法1*/
+.multiRow{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+/*方法2 利用伪元素模拟*/
+p{
+  position: relative;
+  line-height: 20px;
+  height: 40px;
+  overflow: hidden;
+}
+p::after{
+  content: '...';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+/*方法3 float模拟实现 详见https://github.com/happylindz/blog/issues/12*/
+
+/*
+  <div class='wrap'><div class='text'>asdjfaoijogiaheoiqwenfksnifjaoisdfnwkenfkwnfasjdnfanfjwnefkjwbefbakjedfnaskdjnfkajwenfkwjenfw</div></div>
+*/
+
+.wrap{
+  height: 30px;
+  overflow: hidden;
+}
+.wrap .text{
+  float: right;
+}
+
+.wrap::before{
+  float: left;
+  content: '';
+}
+
+.wrap::after{
+  float: right;
+  content: '...';
+}
